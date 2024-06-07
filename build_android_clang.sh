@@ -2,7 +2,6 @@
 set -x
 # 目标Android版本
 API=33
-OPTIMIZE_CFLAGS="-march=$CPU"
 function build
 {
   ./configure \
@@ -46,11 +45,12 @@ TOOL_PREFIX="$TOOLCHAIN/bin/$TOOL_CPU_NAME-linux-android"
  
 CC="$TOOL_PREFIX$API-clang"
 CXX="$TOOL_PREFIX$API-clang++"
+OPTIMIZE_CFLAGS="-march=$CPU"
 build
 
 ARCH=arm
 CPU=armv7-a
-TOOL_CPU_NAME=armv7a
+TOOL_CPU_NAME=arm-linux-androideabi
 #so库输出目录
 OUTPUT=/Users/elileo/Downloads/ffmpeg-7.0.1/android/$CPU
 # NDK的路径，根据自己的NDK位置进行设置
@@ -60,8 +60,9 @@ TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/darwin-x86_64
 # 编译环境
 SYSROOT=$TOOLCHAIN/sysroot
 
-TOOL_PREFIX="$TOOLCHAIN/bin/$TOOL_CPU_NAME-linux-android"
+TOOL_PREFIX="$TOOLCHAIN/bin/$TOOL_CPU_NAME"
  
 CC="$TOOL_PREFIX$API-clang"
 CXX="$TOOL_PREFIX$API-clang++"
+OPTIMIZE_CFLAGS="-march=$CPU -mfloat-abi=softfp -mfpu=vfpv3-d16"
 build
