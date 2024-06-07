@@ -50,7 +50,7 @@ build
 
 ARCH=arm
 CPU=armv7-a
-TOOL_CPU_NAME=arm-linux-androideabi
+TOOL_CPU_NAME=armv7a-linux-androideabi
 #so库输出目录
 OUTPUT=/Users/elileo/Downloads/ffmpeg-7.0.1/android/$CPU
 # NDK的路径，根据自己的NDK位置进行设置
